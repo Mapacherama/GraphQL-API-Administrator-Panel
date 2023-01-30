@@ -1,7 +1,6 @@
 # GraphQL API Administrator Panel
 
-This repository contains a GraphQL API that serves as an administrator panel for managing data. The API is implemented in Python and uses the popular GraphQL library.
-Getting Started
+This repository contains a GraphQL API that serves as an administrator panel for managing data. The API is implemented in Python and uses the popular GraphQL library and Flask web framework. Flask-GraphQL is also used to integrate GraphQL into Flask. To get started:
 
 To start using the API, follow these steps:
 
@@ -21,7 +20,8 @@ Start a pipenv shell:
 
 Run the API: 
 
-    python app.py
+    export FLASK_APP=app
+    flask run
 
 The API will be running on http://localhost:5000/graphql. You can use a GraphQL client like Insomnia to start making queries and mutations to the API.
 Contributing
