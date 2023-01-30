@@ -1,14 +1,30 @@
-import graphene
-from graphene_file_upload.scalars import Upload
 import os
+import psycopg2
 from dotenv import load_dotenv
 
+import graphene
+from flask import Flask
+from flask_graphql import GraphQLView
+from graphene_file_upload.scalars import Upload
+
 load_dotenv()
+
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASS = os.getenv("DB_PASS")
+
+conn = psycopg2.connect(
+    host=DB_HOST,
+    database=DB_NAME,
+    user=DB_USER,
+    password=DB_PASS
+)
 
 class Query(graphene.ObjectType):
     hello = graphene.String(name=graphene.String(default_value="stranger"))
 
-    def resolve_hello(self, info, name):
+    def resolve_hello(self, info, name, conn=conn):
         return 'Hello ' + name
 
 class Mutation(graphene.ObjectType):
@@ -16,17 +32,14 @@ class Mutation(graphene.ObjectType):
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
 
-from flask import Flask
-from flask_graphql import GraphQLView
-
 app = Flask(__name__)
 
 app.add_url_rule(
     '/graphql',
     view_func=GraphQLView.as_view(
         'graphql',
-        schema=graphene.Schema(query=Query),
-        graphiql=True  # for having the GraphiQL interface
+        schema=schema,
+        graphiql=True
     )
 )
 
