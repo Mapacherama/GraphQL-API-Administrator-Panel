@@ -9,6 +9,8 @@ flask = "*"
 graphene-sqlalchemy = "*"
 graphql-core = "==2.3.2"
 phonenumbers = "*"
+pytest = "*"
+pip = "*"
 
 [dev-packages]
 
