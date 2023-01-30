@@ -1,27 +1,27 @@
-# GraphQL-API-Administrator-Panel
+# GraphQL API Administrator Panel
 
 This repository contains a GraphQL API that serves as an administrator panel for managing data. The API is implemented in Python and uses the popular GraphQL library.
 Getting Started
 
 To start using the API, follow these steps:
 
-    Clone the repository to your local machine:
+Clone the repository to your local machine:
 
-bash
+    bash
 
-git clone https://github.com/Mapacherama/GraphQL-API-Administrator-Panel.git
+    git clone https://github.com/Mapacherama/GraphQL-API-Administrator-Panel.git
 
-    Install the dependencies using pipenv:
+Install the dependencies using pipenv:
 
-pipenv install
+    pipenv install
 
-    Start a pipenv shell:
+Start a pipenv shell:
 
-pipenv shell
+    pipenv shell
 
-    Run the API:
+Run the API: 
 
-python app.py
+    python app.py
 
 The API will be running on http://localhost:5000/graphql. You can use a GraphQL client like Insomnia to start making queries and mutations to the API.
 Contributing
