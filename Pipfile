@@ -12,6 +12,9 @@ phonenumbers = "*"
 pytest = "*"
 pip = "*"
 django = "*"
+graphene-django = "*"
+django-environ = "*"
+django-graphql-jwt = "*"
 
 [dev-packages]
 
