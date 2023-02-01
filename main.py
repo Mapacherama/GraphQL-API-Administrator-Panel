@@ -3,14 +3,20 @@ import psycopg2
 from dotenv import load_dotenv
 
 import graphene
+from graphene_django import DjangoObjectType
 from flask import Flask
 from flask_graphql import GraphQLView
 from graphene_file_upload.scalars import Upload
 
-import administrator.user_type as user_type
 import administrator.user_enums as user_enums
 
-UserType = user_type.UserType
+from django.contrib.auth import get_user_model
+
+class UserType(DjangoObjectType):
+    class Meta:
+        model = get_user_model()
+        fields = ["id", "email", "username", "first_name", "last_name", "phone_nr", "gender", "spoken_languages", "password", "password_verification"]
+
 GenderEnum = user_enums.GenderEnum
 LanguageEnum = user_enums.LanguageEnum
 
@@ -43,17 +49,7 @@ class Query(graphene.ObjectType):
         return 'Hello ' + name
 
     def resolve_user(self, info, id):
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM users WHERE id=%s", (id,))
-        user_data = cursor.fetchone()
-        cursor.close()
-        conn.close()
-        return UserType(
-            id=user_data[0],
-            username=user_data[1],
-            email=user_data[2],
-            password=user_data[3]
-        )
+        return info.context.user
 
 
 class CreateUser(graphene.Mutation):
