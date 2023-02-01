@@ -12,7 +12,7 @@ This is a Django implementation of the GraphQL API Administrator Panel. The purp
 
 * Django
 * Graphene-File-Upload
-* Flask-GraphQL
+* Graphene
 
 ## Installation
 
