@@ -1,54 +1,36 @@
- # Administrator Panel
+# GraphQL API Administrator Panel
 
-A front-end for a GraphQL API administrator panel, built using Vue.js 3, PrimeVue, Bootstrap, and chart.js.
+This repository contains a GraphQL API that serves as an administrator panel for managing data. The API is implemented in Python and uses the popular GraphQL library and Flask web framework. Flask-GraphQL is also used to integrate GraphQL into Flask. 
 
-# Getting Started
+## To get started:
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-Prerequisites
+To start using the API, follow these steps:
 
-You will need the following software installed on your system:
+Clone the repository to your local machine:
 
-    Node.js
-    npm
+    bash
 
-Installation
+    git clone https://github.com/Mapacherama/GraphQL-API-Administrator-Panel.git
 
-1. Clone the repository to your local machine.
+Install the dependencies using pipenv:
 
-        git clone https://github.com/Mapacherama/GraphQL-API-Administrator-Panel.git
+    pipenv install
 
-2. Navigate to the project directory.
+Start a pipenv shell:
 
-        cd GraphQL-API-Administrator-Panel
+    pipenv shell
 
-3. Install the dependencies.
+Run the API: 
 
-        npm install
+    export FLASK_APP=app
+    flask run
 
-4. Start the development server.
+The API will be running on http://localhost:5000/graphql. You can use a GraphQL client like Insomnia or GraphQL Playground to start making queries and mutations to the API. If you're new to GraphQL, you can find more information on the basics of GraphQL at the [official GraphQL website](https://graphql.org/learn/).
 
-        npm run serve
+## Contributing
 
-The application will be available at `http://localhost:8080/`.
+If you want to contribute to this project, feel free to open a pull request with your changes. The project maintainers will review your changes and merge them if they are approved.
 
-# Built With
+## License
 
-[Vue.js 3](https://vuejs.org/) - The Progressive JavaScript Framework
-[PrimeVue](https://primevue.org/setup) - A Vue.js UI Library
-[Bootstrap](https://getbootstrap.com/) - A popular CSS framework
-[chart.js](https://www.chartjs.org/) - A JavaScript charting library
-
-# Contributing
-
-Contributions are what make the open-source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
-
-    Fork the Project
-    Create your Feature Branch (git checkout -b feature/AmazingFeature)
-    Commit your Changes (git commit -m 'Add some AmazingFeature')
-    Push to the Branch (git push origin feature/AmazingFeature)
-    Open a Pull Request
-
-# License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
