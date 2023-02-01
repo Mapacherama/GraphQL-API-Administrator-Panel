@@ -25,8 +25,9 @@ Run the API:
     export FLASK_APP=app
     flask run
 
-The API will be running on http://localhost:5000/graphql. You can use a GraphQL client like Insomnia to start making queries and mutations to the API.
-Contributing
+The API will be running on http://localhost:5000/graphql. You can use a GraphQL client like Insomnia or GraphQL Playground to start making queries and mutations to the API. If you're new to GraphQL, you can find more information on the basics of GraphQL at the [official GraphQL website](https://graphql.org/learn/).
+
+## Contributing
 
 If you want to contribute to this project, feel free to open a pull request with your changes. The project maintainers will review your changes and merge them if they are approved.
 
