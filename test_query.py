@@ -1,10 +1,11 @@
 import unittest
 import graphene
-import graphene.test
+from main import Query
+
+schema = graphene.Schema(query=Query)
 
 class TestHelloQuery(unittest.TestCase):
     def test_hello(self):
-        schema = graphene.Schema(query=HelloQuery)
         result = schema.execute('''
             query {
                 hello(name: "jerome")

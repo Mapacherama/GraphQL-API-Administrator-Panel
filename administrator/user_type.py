@@ -13,6 +13,4 @@ class UserType(graphene.ObjectType):
     spoken_languages = graphene.List(LanguageEnum, required=True)
     old_password = graphene.String(required=True)
     password = graphene.String(required=True)
-    password_verification = graphene.String(required=True)
-
-    
+    password_verification = graphene.String(required=True)   
