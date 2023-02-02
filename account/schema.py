@@ -1,11 +1,12 @@
 import os
 from dotenv import load_dotenv
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate, login
 import graphene
 from graphene import ObjectType, String, Int, InputObjectType, Mutation, Field
 from graphene_django import DjangoObjectType
 from graphene_file_upload.scalars import Upload
+from graphql import GraphQLError
 
 from graphql_jwt.shortcuts import create_refresh_token, get_token
 
@@ -29,19 +30,6 @@ class CreateUser(Mutation):
     user = graphene.Field(UserType)
     token = graphene.String()
     refresh_token = graphene.String()
-
-    #     email = models.EmailField(unique=True)
-    # username = models.CharField(max_length=30, unique=True)
-    # first_name = models.CharField(max_length=30)
-    # last_name = models.CharField(max_length=30)
-    # phone_nr = models.CharField(max_length=15)
-    # password = models.CharField(max_length=64)
-
-    # def set_password(self, raw_password):
-    #     self.password = make_password(raw_password)
-
-    # gender = models.CharField(max_length=10, choices=Gender.choices, default=Gender.MALE)
-    # spoken_languages = models.CharField(max_length=255, choices=LanguageEnum.choices, default = LanguageEnum.ENGLISH)
 
     class Arguments:
         email = graphene.String(required=True)
@@ -71,6 +59,23 @@ class CreateUser(Mutation):
 
         return CreateUser(user=user, token = token, refresh_token = refresh_token)
 
+
+
+class LoginUser(graphene.Mutation):
+    class Arguments:
+        username = graphene.String(required=True)
+        password = graphene.String(required=True)
+
+    success = graphene.Boolean()
+
+    def mutate(self, info, username, password):
+        user = authenticate(username=username, password=password)
+        if user is None:
+            raise GraphQLError("Invalid username or password.")
+        login(info.context, user)
+        return LoginUser(success=True)        
+
 class Mutation(ObjectType):
     upload_file = Field(Upload, file=Upload(required=True))
     create_user = CreateUser.Field()
+    login = LoginUser.Field()
