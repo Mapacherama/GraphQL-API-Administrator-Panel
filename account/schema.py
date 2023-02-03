@@ -8,6 +8,8 @@ from graphene_django import DjangoObjectType
 from graphene_file_upload.scalars import Upload
 from graphql import GraphQLError
 
+import graphql_jwt
+
 from graphql_jwt.shortcuts import create_refresh_token, get_token
 
 load_dotenv()
@@ -79,3 +81,11 @@ class Mutation(ObjectType):
     upload_file = Field(Upload, file=Upload(required=True))
     create_user = CreateUser.Field()
     login = LoginUser.Field()
+    
+    # Create and alter tokens
+    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+    verify_token = graphql_jwt.Verify.Field()
+    refresh_token = graphql_jwt.Refresh.Field()
+    revoke_token = graphql_jwt.Revoke.Field()
+    delete_token_cookie = graphql_jwt.DeleteJSONWebTokenCookie.Field()
+    delete_refresh_token_cookie = graphql_jwt.DeleteRefreshTokenCookie.Field()

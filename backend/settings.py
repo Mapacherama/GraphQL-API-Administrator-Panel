@@ -88,6 +88,8 @@ GRAPHENE = {
     ],
 }
 
+# CORS
+CORS_ALLOWED_ORIGINS = env.list("CORS_URLS")
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
