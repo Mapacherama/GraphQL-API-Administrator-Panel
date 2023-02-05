@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model, authenticate, login
 import graphene
 from graphene import ObjectType, String, Int, InputObjectType, Mutation, Field
 from graphene_django import DjangoObjectType
+from graphql_jwt.decorators import login_required, permission_required
 from graphene_file_upload.scalars import Upload
 from graphql import GraphQLError
 
@@ -21,6 +22,11 @@ class UserType(DjangoObjectType):
 
 class Query(ObjectType):
     user = Field(UserType, id=Int(required=True))
+    who_am_i = graphene.Field(UserType)
+
+    @login_required
+    def resolve_who_am_i(self, info):
+        return info.context.user
 
     def resolve_hello(self, info, name):
         return 'Hello ' + name
